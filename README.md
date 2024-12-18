@@ -1,84 +1,109 @@
 # Project 1: Kaggle Retail Sales ETL Pipeline
 
 ## Overview
-This project demonstrates an end-to-end data engineering workflow for integrating, modeling, and analyzing retail sales data sourced from Kaggle. It implements a star schema in SQLite, using SQLAlchemy ORM models for schema definition and SQL queries for transformations. Finally, it provides analytical queries to derive insights (e.g., monthly revenue trends and top-performing product categories).
+This project demonstrates an end-to-end data engineering workflow using data from Kaggle. We acquire a retail sales dataset, model it in a star schema using SQLite and SQLAlchemy, and transform the data via SQL queries. Finally, we produce analytical insights (e.g., monthly revenue and category performance).
 
 **Key Highlights:**
-- **External Data Integration:** Uses the Kaggle API to download real-world retail sales data.
-- **Schema Design & Modeling:** Implements a star schema (fact and dimension tables) with `sqlalchemy` ORM.
-- **SQL Transformations:** Performs data cleaning and transformations using raw SQL queries.
-- **Data Quality Checks:** Includes referential integrity checks and ensures no missing foreign keys.
-- **Analytics & Insights:** Produces monthly sales trends and category performance metrics.
+- **External Data Integration:** Fetch a real-world dataset from Kaggle.
+- **Schema Design (SQLAlchemy + SQLite):** Define dim/fact tables using ORM models.
+- **SQL Transformations:** Leverage SQL queries for data cleaning and structuring.
+- **Data Quality Checks:** Validate that dimensions align with fact table keys.
+- **Analytics & Insights:** Extract meaningful metrics (monthly sales, top categories).
+
+**Author:** [Sabelo-Sabs](https://github.com/Sabelo-Sabs)
 
 ## Prerequisites
 - **Kaggle Account & API Key:**  
-  Set up your Kaggle credentials by placing `kaggle.json` in `~/.kaggle/` and ensuring it has the correct permissions:
+  Obtain your `kaggle.json` from your Kaggle account and place it in `~/.kaggle/kaggle.json`:
   ```bash
+  mkdir -p ~/.kaggle
+  mv kaggle.json ~/.kaggle/
   chmod 600 ~/.kaggle/kaggle.json
   ```
-- **Pipenv (Python environment):**  
-  Install `pipenv` if you haven’t already:
+  
+- **pyenv:**  
+  Install pyenv following instructions here: [pyenv installation](https://github.com/pyenv/pyenv#installation).  
+  Use pyenv to install a specific Python version (e.g., 3.9.16):
+  ```bash
+  pyenv install 3.9.16
+  pyenv local 3.9.16
+  ```
+  
+- **pipenv:**  
+  Install pipenv if you don’t already have it:
   ```bash
   pip install --user pipenv
   ```
 
+With pyenv, we ensure a consistent Python version. With pipenv, we manage dependencies in an isolated environment.
+
 ## Setup Instructions
-1. **Clone the Repository:**  
+
+1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/kaggle_retail_pipeline.git
+   git clone https://github.com/Sabelo-Sabs/project1_kaggle_retail_pipeline.git
    cd project1_kaggle_retail_pipeline
    ```
 
-2. **Set Up the Virtual Environment with Pipenv:**  
+2. **Set Python Version via pyenv:**
+   Within the project directory:
+   ```bash
+   pyenv local 3.9.16
+   ```
+   This ensures that any Python commands here use the specified version.
+
+3. **Initialize Pipenv Environment:**
+   Use pipenv to create and manage a virtual environment for dependencies:
    ```bash
    pipenv --python 3.9
    pipenv install pandas sqlalchemy kaggle jupyter
-   pipenv shell
    ```
    
-3. **Run the Jupyter Notebook:**  
-   Launch Jupyter Notebook or JupyterLab:
+   *Note:* `--python 3.9` ensures pipenv uses the Python version set by pyenv. If `pyenv local 3.9.16` is already set, pipenv will pick up that version automatically.
+
+4. **Activate the Pipenv Shell:**
+   ```bash
+   pipenv shell
+   ```
+   Now you are inside the project’s virtual environment.
+
+5. **Run the Jupyter Notebook:**
    ```bash
    jupyter notebook
    ```
    Open `project1_pipeline.ipynb` in your browser and run all cells in order.
 
 ## Data Source
-- **Dataset:** [Global Super Store Dataset (Kaggle)](https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting)
-  
-  The dataset includes historical sales data across various product categories, regions, and time periods, allowing for rich analytical insights.
+- **Dataset:** [Global Superstore Sales Forecasting (Kaggle)](https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting)
+
+This dataset provides detailed sales information, enabling rich analytics on product performance, geographical markets, and time-based trends.
 
 ## Pipeline Steps
 1. **Data Acquisition:**  
    Uses the Kaggle API to download the dataset into the `data/` directory.
 
 2. **Staging:**  
-   Loads the raw CSV file into a `stg_sales` table within an SQLite database (`retail_sales.db`).
+   Loads raw CSV data into `stg_sales` within `retail_sales.db`.
 
 3. **Schema Definition:**  
-   Defines dimension and fact tables using `sqlalchemy` ORM models for clarity, maintainability, and structure.
+   Uses SQLAlchemy ORM to define `dim_customers`, `dim_products`, `dim_dates`, and `fact_sales` tables.
 
-4. **Transformations & Loading:**
-   - Inserts cleaned, deduplicated dimension data into `dim_customers`, `dim_products`, and `dim_dates`.
-   - Creates indexes on dimension tables for performance.
-   - Populates the `fact_sales` table by joining `stg_sales` with the dimension tables via natural keys.
+4. **Transformations & Loading:**  
+   - Populate dimension tables from staging data.
+   - Create indexes for performance.
+   - Load the fact table by joining staging with dimension tables.
 
-5. **Data Quality Checks:**
-   - Verifies record counts.
-   - Checks for any orphaned product IDs in the fact table.
+5. **Data Quality Checks:**  
+   Validate record counts and ensure no orphaned dimension keys.
 
-6. **Analytics & Insights:**
-   - Provides SQL queries to summarize monthly sales and profits.
-   - Identifies top categories by revenue and profit.
-
-## Outputs
-- **Database:** `retail_sales.db` containing populated fact and dimension tables.
-- **Summaries:** Printed DataFrames in the notebook showing monthly trends and top categories.
+6. **Analytics & Insights:**  
+   - Monthly revenue and profit trends.
+   - Top categories by revenue and profit.
 
 ## Directory Structure
 ```bash
 project1_kaggle_retail_pipeline/
-├─ data/                 # Downloaded datasets
+├─ data/               
 ├─ project1_pipeline.ipynb
 ├─ README.md
 ├─ Pipfile
@@ -86,7 +111,7 @@ project1_kaggle_retail_pipeline/
 ```
 
 ## Next Steps
-- **Extend Validations:** Add more sophisticated data quality checks or integrate Great Expectations.
-- **CI/CD:** Incorporate GitHub Actions to automatically test the ETL pipeline on each commit.
-- **Visualization:** Create charts or dashboards (e.g., in a separate notebook or a BI tool) to present insights visually.
-- **Parameterization:** Allow dataset paths or database connections to be set via environment variables.
+- **Extended Validations:** Add more robust data quality checks.
+- **CI/CD Integration:** Use GitHub Actions to run tests on each commit.
+- **Visualization:** Incorporate charts or dashboards for clearer insight communication.
+- **Parameterization:** Pass dataset paths or credentials via environment variables.
