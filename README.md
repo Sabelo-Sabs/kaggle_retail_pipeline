@@ -25,7 +25,7 @@ This project demonstrates an end-to-end data engineering workflow for integratin
 ## Setup Instructions
 1. **Clone the Repository:**  
    ```bash
-   git clone https://github.com/yourusername/project1_kaggle_retail_pipeline.git
+   git clone https://github.com/yourusername/kaggle_retail_pipeline.git
    cd project1_kaggle_retail_pipeline
    ```
 
