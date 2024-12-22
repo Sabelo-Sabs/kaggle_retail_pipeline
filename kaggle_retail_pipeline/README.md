@@ -100,6 +100,18 @@ This dataset provides detailed sales information, enabling rich analytics on pro
    - Monthly revenue and profit trends.
    - Top categories by revenue and profit.
 
+## Jupytext Commands
+
+To convert a Jupyter notebook to a script using Jupytext:
+```bash
+jupytext --to py notebook.ipynb
+```
+
+To convert a script back to a Jupyter notebook:
+```bash
+jupytext --to notebook script.py
+```
+
 ## Directory Structure
 ```bash
 project1_kaggle_retail_pipeline/
