@@ -1,0 +1,4 @@
+# Do not ignore everything except retail_sales.db
+!*/
+!*.*
+retail_sales.db
