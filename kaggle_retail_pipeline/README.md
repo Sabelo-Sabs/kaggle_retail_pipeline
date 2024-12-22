@@ -109,7 +109,7 @@ jupytext --to py pipeline.ipynb
 
 To convert a script back to a Jupyter notebook:
 ```bash
-jupytext --to pipeline script.py
+jupytext --to notebook pipeline.py
 ```
 
 ## Directory Structure
