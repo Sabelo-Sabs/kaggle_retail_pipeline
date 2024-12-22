@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b9b8eef3b42718f0e942e6c641202bfe8177ab9dfa7dc2df77c2fc8598356d84"
+            "sha256": "771b0d4411fe2e7e41b3c8dab16d94c6e24289373cd68bb1b0141d281492aec4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -693,12 +693,29 @@
             "markers": "python_version >= '3.7'",
             "version": "==3.0.13"
         },
+        "jupytext": {
+            "hashes": [
+                "sha256:900132031f73fee15a1c9ebd862e05eb5f51e1ad6ab3a2c6fdd97ce2f9c913b4",
+                "sha256:dbd03f9263c34b737003f388fc069e9030834fb7136879c4c32c32473557baa0"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==1.16.6"
+        },
         "kaggle": {
             "hashes": [
                 "sha256:439a7dea1d5039f320fd6ad5ec21b688dcfa70d405cb42095b81f41edc401b81"
             ],
             "index": "pypi",
             "version": "==1.6.17"
+        },
+        "markdown-it-py": {
+            "hashes": [
+                "sha256:355216845c60bd96232cd8d8c40e8f9765cc86f46880e43a8fd22dc1a1a8cab1",
+                "sha256:e3f60a94fa066dc52ec76661e37c851cb232d92f9886b15cb560aaada2df8feb"
+            ],
+            "markers": "python_version >= '3.8'",
+            "version": "==3.0.0"
         },
         "markupsafe": {
             "hashes": [
@@ -774,6 +791,22 @@
             ],
             "markers": "python_version >= '3.8'",
             "version": "==0.1.7"
+        },
+        "mdit-py-plugins": {
+            "hashes": [
+                "sha256:0c673c3f889399a33b95e88d2f0d111b4447bdfea7f237dab2d488f459835636",
+                "sha256:5f2cd1fdb606ddf152d37ec30e46101a60512bc0e5fa1a7002c36647b09e26b5"
+            ],
+            "markers": "python_version >= '3.8'",
+            "version": "==0.4.2"
+        },
+        "mdurl": {
+            "hashes": [
+                "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8",
+                "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==0.1.2"
         },
         "mistune": {
             "hashes": [
