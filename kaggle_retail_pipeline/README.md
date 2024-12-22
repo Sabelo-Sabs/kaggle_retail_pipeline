@@ -104,12 +104,12 @@ This dataset provides detailed sales information, enabling rich analytics on pro
 
 To convert a Jupyter notebook to a script using Jupytext:
 ```bash
-jupytext --to py notebook.ipynb
+jupytext --to py pipeline.ipynb
 ```
 
 To convert a script back to a Jupyter notebook:
 ```bash
-jupytext --to notebook script.py
+jupytext --to pipeline script.py
 ```
 
 ## Directory Structure
